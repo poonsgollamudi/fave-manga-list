@@ -1,14 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+export interface Manga {
+  title: string;
+  images: string;
+  mal_id: number;
+  url: string;
+}
 const useMangas = () => {
-  interface Manga {
-    title: String;
-    images: String;
-    mal_id: number;
-    url: String;
-  }
-
   interface FetchMangaResponse {
     count: number;
     data: Manga[];
@@ -19,7 +17,7 @@ const useMangas = () => {
   useEffect(() => {
     axios
       .get<FetchMangaResponse>(
-        "https://api.jikan.moe/v4/manga?q=Kaguya-hime&limit=2"
+        "https://api.jikan.moe/v4/manga?q=Kaguya-hime&limit=3"
       )
       .then((res) => setMangas(res.data.data))
       .catch((err) => setError(err.message));
