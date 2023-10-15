@@ -1,6 +1,7 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import MangaGrid from "./components/MangaGrid";
+import GenreList from "./components/GenreList";
 
 const corsOptions = {
   origin: "http://localhost:3000",
@@ -17,7 +18,9 @@ function App() {
         <NavBar></NavBar>
       </GridItem>
       <Show above="lg">
-        <GridItem area="aside">Aside</GridItem>
+        <GridItem area="aside">
+          <GenreList></GenreList>
+        </GridItem>
       </Show>
       <GridItem area="main">
         <MangaGrid></MangaGrid>

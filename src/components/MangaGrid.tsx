@@ -14,7 +14,7 @@ const MangaGrid = () => {
         spacing={10}
       >
         {mangas.map((manga: any) => (
-          <MangaCard manga={manga} key={manga.id}></MangaCard>
+          <MangaCard manga={manga} key={manga.mal_id}></MangaCard>
         ))}
       </SimpleGrid>
     </>
