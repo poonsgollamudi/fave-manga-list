@@ -1,16 +1,16 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
-import useMangas, { Manga } from "../hooks/useMangas";
+import useMangas from "../hooks/useMangas";
 import MangaCard from "./MangaCard";
+
 import { v4 as uuidv4 } from "uuid";
 
 interface Props {
   onMangaDisplayed: (genre: string) => void;
-  allManga: Manga;
   genreSelectedGrid: string;
 }
 
-const MangaGridSelected = ({ allManga, genreSelectedGrid }: Props) => {
-  const { mangas } = useMangas(allManga.title);
+const MangaGridSelected = ({ genreSelectedGrid }: Props) => {
+  const { mangas } = useMangas();
 
   return (
     <>

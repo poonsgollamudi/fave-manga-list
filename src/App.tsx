@@ -3,12 +3,8 @@ import NavBar from "./components/NavBar";
 import MangaGrid from "./components/MangaGrid";
 import GenreList from "./components/GenreList";
 import { useState } from "react";
-import { Genre } from "./hooks/useGenres";
-import { Manga } from "./hooks/useMangas";
 import MangaGridSelected from "./components/MangaGridSelected";
 import { v4 as uuidv4 } from "uuid";
-
-const selectedManga: Manga = { title: "Kaguya-Hime", genre: "romance" };
 
 function App() {
   const [selectedgrenre, setSelectedGrenre] = useState("");
@@ -26,23 +22,18 @@ function App() {
       </GridItem>
       <Show above="lg">
         <GridItem padding={5} area="aside">
-          <GenreList
-            mangaTitle={selectedManga}
-            onSelectedGrenre={setSelectedGrenre}
-          ></GenreList>
+          <GenreList onSelectedGrenre={setSelectedGrenre}></GenreList>
         </GridItem>
         <GridItem className="mangasList" area="main">
           <Heading paddingLeft={2}>Mangas</Heading>
           {selectedgrenre === "" ? (
             <MangaGrid
-              allManga={selectedManga}
               onMangaDisplayed={setSelectedGrenre}
               genreSelectedGrid={selectedgrenre}
               key={uuidv4()}
             ></MangaGrid>
           ) : (
             <MangaGridSelected
-              allManga={selectedManga}
               onMangaDisplayed={setSelectedGrenre}
               genreSelectedGrid={selectedgrenre}
               key={uuidv4()}
