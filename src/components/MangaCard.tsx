@@ -7,8 +7,14 @@ interface Props {
   genreSelect: any;
 }
 
+const selectedManga: Manga = { title: "Kaguya-Hime", genre: "romance" };
+
 const MangaCard = ({ manga, genreSelect }: Props) => {
   let [selectedGenre, setselectedgrenre] = useState<Manga | null>(null);
+
+  manga.genres[0].name === genreSelect && genreSelect
+    ? (selectedGenre = manga)
+    : (selectedGenre = null);
 
   // function mangaDisplay() {
   //   if (manga.genres[0].name === genreSelect && genreSelect) {
@@ -23,12 +29,12 @@ const MangaCard = ({ manga, genreSelect }: Props) => {
   // const myfunc = mangaDisplay();
   return (
     <>
-      {manga.genres[0].name === genreSelect && genreSelect ? (
-        <Card borderRadius={10} overflow="hidden">
-          <Image src={manga.images.webp.image_url} />
+      {selectedGenre !== null || genreSelect !== "" ? (
+        <Card borderRadius={10}>
+          <Image src={selectedGenre?.images.webp.image_url} />
           <CardBody>
-            <Link href={manga.url} fontSize="2xl" isExternal>
-              {manga.title}
+            <Link href={selectedGenre?.url} fontSize="2xl" isExternal>
+              {selectedGenre?.title}
             </Link>
           </CardBody>
         </Card>

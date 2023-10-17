@@ -8,8 +8,6 @@ import { Manga } from "./hooks/useMangas";
 
 const selectedManga: Manga = { title: "Kaguya-Hime", genre: "romance" };
 
-const genreIchoose: Genre = { type: "Action" };
-
 function App() {
   const [selectedgrenre, setSelectedGrenre] = useState("");
 

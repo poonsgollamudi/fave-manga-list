@@ -1,31 +1,49 @@
-import { SimpleGrid, Text } from "@chakra-ui/react";
-import useMangas, { Manga } from "../hooks/useMangas";
-import MangaCard from "./MangaCard";
-import useGenres, { Genre } from "../hooks/useGenres";
-import GenreList from "./GenreList";
-import useData from "../hooks/useData";
+import { useState } from "react";
+import { Manga } from "../hooks/useMangas";
+import { Card, CardBody, Heading, Image, Link, Text } from "@chakra-ui/react";
 
 interface Props {
-  allManga: Manga;
+  manga: Manga;
+  genreSelect: any;
 }
 
-const MangaGrid = ({ allManga }: Props) => {
-  const { mangas, error } = useData(allManga.title);
+const MangaCard = ({ manga, genreSelect }: Props) => {
+  let [selectedGenre, setselectedgrenre] = useState<Manga | null>(null);
 
+  // function mangaDisplay() {
+  //   if (manga.genres[0].name === genreSelect && genreSelect) {
+  //     console.log("yes");
+  //     setselectedgrenre(manga);
+  //     return manga;
+  //   } else {
+  //     setselectedgrenre(null);
+  //     return null;
+  //   }
+  // }
+  // const myfunc = mangaDisplay();
   return (
     <>
-      {error && <Text>{error}</Text>}
-      <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 4, xl: 5 }}
-        padding="10px"
-        spacing={10}
-      >
-        {mangas.map((manga, index) => (
-          <MangaCard manga={manga} key={manga.mal_id}></MangaCard>
-        ))}
-      </SimpleGrid>
+      {manga.genres[0].name === genreSelect && genreSelect ? (
+        <Card borderRadius={10} overflow="hidden">
+          <Image src={manga.images.webp.image_url} />
+          <CardBody>
+            <Link href={manga.url} fontSize="2xl" isExternal>
+              {manga.title}
+            </Link>
+          </CardBody>
+        </Card>
+      ) : (
+        <Card borderRadius={10} overflow="hidden">
+          <Image src={manga.images.webp.image_url} />
+          <CardBody>
+            <Link href={manga.url} fontSize="2xl" isExternal>
+              {manga.title}
+            </Link>
+          </CardBody>
+        </Card>
+      )}
     </>
   );
 };
 
-export default MangaGrid;
+export default MangaCard;
