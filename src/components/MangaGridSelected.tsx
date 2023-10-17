@@ -1,49 +1,37 @@
-import { useState } from "react";
-import { Manga } from "../hooks/useMangas";
-import { Card, CardBody, Heading, Image, Link, Text } from "@chakra-ui/react";
+import { SimpleGrid, Text } from "@chakra-ui/react";
+import useMangas, { Manga } from "../hooks/useMangas";
+import MangaCard from "./MangaCard";
 
 interface Props {
-  manga: Manga;
-  genreSelect: any;
+  onMangaDisplayed: (genre: string) => void;
+  allManga: Manga;
+  genreSelectedGrid: string;
 }
 
-const MangaCard = ({ manga, genreSelect }: Props) => {
-  let [selectedGenre, setselectedgrenre] = useState<Manga | null>(null);
+const MangaGrid = ({ allManga, genreSelectedGrid }: Props) => {
+  const { mangas } = useMangas(allManga.title);
 
-  // function mangaDisplay() {
-  //   if (manga.genres[0].name === genreSelect && genreSelect) {
-  //     console.log("yes");
-  //     setselectedgrenre(manga);
-  //     return manga;
-  //   } else {
-  //     setselectedgrenre(null);
-  //     return null;
-  //   }
-  // }
-  // const myfunc = mangaDisplay();
   return (
     <>
-      {manga.genres[0].name === genreSelect && genreSelect ? (
-        <Card borderRadius={10} overflow="hidden">
-          <Image src={manga.images.webp.image_url} />
-          <CardBody>
-            <Link href={manga.url} fontSize="2xl" isExternal>
-              {manga.title}
-            </Link>
-          </CardBody>
-        </Card>
-      ) : (
-        <Card borderRadius={10} overflow="hidden">
-          <Image src={manga.images.webp.image_url} />
-          <CardBody>
-            <Link href={manga.url} fontSize="2xl" isExternal>
-              {manga.title}
-            </Link>
-          </CardBody>
-        </Card>
-      )}
+      <SimpleGrid
+        columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
+        padding="10px"
+        spacing={10}
+      >
+        {mangas.map((manga: any, index) =>
+          manga.genres[0].name === genreSelectedGrid ? (
+            <MangaCard
+              manga={manga}
+              key={manga.mal_id}
+              genreSelect={genreSelectedGrid}
+            ></MangaCard>
+          ) : (
+            <></>
+          )
+        )}
+      </SimpleGrid>
     </>
   );
 };
 
-export default MangaCard;
+export default MangaGrid;
