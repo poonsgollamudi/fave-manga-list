@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
 export interface Manga {
   title: string;
   images?: string;
@@ -12,7 +11,7 @@ interface Props {
   selectedManga: Manga;
 }
 
-const useMangas = (title: string) => {
+const useData = (title: string) => {
   interface FetchMangaResponse {
     count: number;
     data: Manga[];
@@ -23,16 +22,13 @@ const useMangas = (title: string) => {
   useEffect(() => {
     axios
       .get<FetchMangaResponse>(
-        `https://api.jikan.moe/v4/manga?q=${title}&limit=5`
+        `https://api.jikan.moe/v4/manga?q=${title}&genres=2`
       )
       .then((res) => setMangas(res.data.data))
       .catch((err) => setError(err.message));
   }, []);
 
-  const genres2 = mangas.map((manga) => manga.genres[0].name);
-  const genres = [...new Set(genres2)];
-
-  return { mangas, genres, error };
+  return { mangas, error };
 };
 
-export default useMangas;
+export default useData;

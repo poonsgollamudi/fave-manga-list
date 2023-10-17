@@ -1,15 +1,31 @@
-import React from "react";
-import useGenre from "../hooks/useGenres";
-import useGenres from "../hooks/useGenres";
+import { HStack, List, ListItem, Button } from "@chakra-ui/react";
+import useMangas, { Manga } from "../hooks/useMangas";
 
-const GenreList = () => {
-  const { genres } = useGenres();
+interface Props {
+  onSelectedGrenre: (genre: string) => void;
+  mangaTitle: Manga;
+}
+const GenreList = ({ mangaTitle, onSelectedGrenre }: Props) => {
+  const { genres } = useMangas(mangaTitle.title);
+
   return (
-    <ul>
-      {genres.map((genre) => (
-        <li key={genre.mal_id}>{genre.genres[0].name}</li>
+    <List paddingTop="30">
+      {genres.map((genre, index) => (
+        <ListItem key={index} paddingY="5px">
+          <HStack>
+            <Button
+              fontWeight={genre.mal_id === mangaTitle?.mal_id ? "bold" : "none"}
+              fontSize="lg"
+              color="teal.500"
+              variant="link"
+              onClick={() => onSelectedGrenre(genre)}
+            >
+              {genre}
+            </Button>
+          </HStack>
+        </ListItem>
       ))}
-    </ul>
+    </List>
   );
 };
 
