@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Genre } from "./hooks/useGenres";
 import { Manga } from "./hooks/useMangas";
 import MangaGridSelected from "./components/MangaGridSelected";
+import { v4 as uuidv4 } from "uuid";
 
 const selectedManga: Manga = { title: "Kaguya-Hime", genre: "romance" };
 
@@ -37,14 +38,14 @@ function App() {
               allManga={selectedManga}
               onMangaDisplayed={setSelectedGrenre}
               genreSelectedGrid={selectedgrenre}
-              key={selectedgrenre}
+              key={uuidv4()}
             ></MangaGrid>
           ) : (
             <MangaGridSelected
               allManga={selectedManga}
               onMangaDisplayed={setSelectedGrenre}
               genreSelectedGrid={selectedgrenre}
-              key={selectedgrenre}
+              key={uuidv4()}
             ></MangaGridSelected>
           )}
         </GridItem>

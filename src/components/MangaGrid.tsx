@@ -1,6 +1,7 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import useMangas, { Manga } from "../hooks/useMangas";
 import MangaCard from "./MangaCard";
+import { v4 as uuidv4 } from "uuid";
 
 interface Props {
   onMangaDisplayed: (genre: string) => void;
@@ -17,11 +18,12 @@ const MangaGrid = ({ allManga, genreSelectedGrid }: Props) => {
         columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
         padding="10px"
         spacing={10}
+        key={uuidv4()}
       >
         {mangas.map((manga: any) => (
           <MangaCard
             manga={manga}
-            key={manga.mal_id}
+            key={uuidv4()}
             genreSelect={genreSelectedGrid}
           ></MangaCard>
         ))}
