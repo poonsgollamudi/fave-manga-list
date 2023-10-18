@@ -1,5 +1,5 @@
-import { HStack, Image } from "@chakra-ui/react";
-import logo from "../images/woman-reading-book-color.jpg";
+import { HStack, Heading, Image } from "@chakra-ui/react";
+import logo from "../images/book.png";
 import ColorModeSwitch from "./ColorModeSwitch";
 const NavBar = () => {
   return (
@@ -11,6 +11,7 @@ const NavBar = () => {
         borderColor="blue.500"
         borderRadius="50%"
       />
+      <Heading>Memajuve's Manga list</Heading>
       <ColorModeSwitch></ColorModeSwitch>
     </HStack>
   );

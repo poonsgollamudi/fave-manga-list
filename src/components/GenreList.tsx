@@ -12,7 +12,7 @@ let genresL = genres.genres;
 const GenreList = ({ onSelectedGrenre }: Props) => {
   return (
     <List paddingTop="30">
-      <ListItem key={uuidv4()} paddingY="5px" padding={5}>
+      <ListItem key={uuidv4()} paddingY="5px">
         {genresL.map((str) => (
           <HStack key={uuidv4()}>
             <Button
