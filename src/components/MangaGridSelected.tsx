@@ -1,7 +1,7 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import useMangas from "../hooks/useMangas";
 import MangaCard from "./MangaCard";
-
+import titles from "../data/data";
 import { v4 as uuidv4 } from "uuid";
 
 interface Props {
@@ -9,12 +9,19 @@ interface Props {
   genreSelectedGrid: string;
 }
 
-const MangaGridSelected = ({ genreSelectedGrid }: Props) => {
-  const { mangas } = useMangas();
+let mangasList: any[];
 
+const MangaGridSelected = ({ genreSelectedGrid }: Props) => {
+  for (let key in titles) {
+    let title = titles[key].manga;
+    let { mangas } = useMangas(title);
+    console.log(mangas);
+    mangasList.push(mangas);
+  }
+  console.log(mangasList);
   return (
     <>
-      <SimpleGrid
+      {/* <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
         padding="10px"
         spacing={10}
@@ -31,7 +38,7 @@ const MangaGridSelected = ({ genreSelectedGrid }: Props) => {
             <></>
           )
         )}
-      </SimpleGrid>
+      </SimpleGrid> */}
     </>
   );
 };

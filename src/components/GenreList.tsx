@@ -1,11 +1,19 @@
 import { HStack, List, ListItem, Button } from "@chakra-ui/react";
 import useMangas from "../hooks/useMangas";
+import titles from "../data/data";
 
 interface Props {
   onSelectedGrenre: (genre: string) => void;
 }
+
+let genres: string[];
+
 const GenreList = ({ onSelectedGrenre }: Props) => {
-  const { genres } = useMangas();
+  //const { genres } = useMangas();
+  for (let key in titles) {
+    let title = titles[key].manga;
+    genres = useMangas(title);
+  }
 
   return (
     <List paddingTop="30">
