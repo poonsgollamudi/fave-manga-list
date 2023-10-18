@@ -18,18 +18,14 @@ const useMangas = (titleOfManga: string) => {
   var genres = new Array<string>();
   console.log(titleOfManga);
 
-  axios
-    .get<FetchMangaResponse>(
-      `https://api.jikan.moe/v4/manga?q=${titleOfManga}&limit=1`
-    )
-    .then((res) => setMangas(res.data.data))
-    .catch((err) => setError(err.message));
+  // await axios
+  //   .get(`https://api.jikan.moe/v4/manga/11`)
+  //   .then((res) => setMangas(res.data.data))
+  //   .catch((err) => setError(err.message));
 
   useEffect(() => {
     axios
-      .get<FetchMangaResponse>(
-        `https://api.jikan.moe/v4/manga?q=${titleOfManga}&limit=1`
-      )
+      .get<FetchMangaResponse>(`https://api.jikan.moe/v4/manga/11`)
       .then((res) => setMangas(res.data.data))
       .catch((err) => setError(err.message));
   }, []);
@@ -43,7 +39,7 @@ const useMangas = (titleOfManga: string) => {
   }
   genres = [...new Set(genres2)];
 
-  return { mangas, genres, error };
+  return { mangas, genres };
 };
 
 export default useMangas;

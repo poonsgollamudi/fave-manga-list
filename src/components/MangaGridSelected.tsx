@@ -9,7 +9,7 @@ interface Props {
   genreSelectedGrid: string;
 }
 
-let mangasList: any[];
+let mangasList = new Array<string>();
 
 const MangaGridSelected = ({ genreSelectedGrid }: Props) => {
   for (let key in titles) {

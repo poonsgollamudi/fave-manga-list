@@ -7,12 +7,14 @@ interface Props {
 }
 
 let genres: string[];
+let mangasList = new Array<string>();
 
 const GenreList = ({ onSelectedGrenre }: Props) => {
   //const { genres } = useMangas();
   for (let key in titles) {
     let title = titles[key].manga;
-    genres = useMangas(title);
+    let { genres } = useMangas(title);
+    mangasList.push(genres);
   }
 
   return (

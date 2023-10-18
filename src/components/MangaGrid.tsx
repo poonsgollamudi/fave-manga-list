@@ -8,7 +8,7 @@ interface Props {
   onMangaDisplayed: (genre: string) => void;
   genreSelectedGrid: string;
 }
-let mangasList: any[];
+let mangasList = new Array<string>();
 
 const MangaGrid = ({ genreSelectedGrid }: Props) => {
   for (let key in titles) {
