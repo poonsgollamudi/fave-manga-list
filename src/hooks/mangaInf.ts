@@ -3,6 +3,6 @@ interface Manga {
   images?: string;
   mal_id?: number;
   url?: string;
-  genre?: string;
+  genres?: string[];
 }
 export default Manga;

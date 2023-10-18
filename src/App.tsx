@@ -27,14 +27,9 @@ function App() {
         <GridItem className="mangasList" area="main">
           <Heading paddingLeft={2}>Mangas</Heading>
           {selectedgrenre === "" ? (
-            <MangaGrid
-              onMangaDisplayed={setSelectedGrenre}
-              genreSelectedGrid={selectedgrenre}
-              key={uuidv4()}
-            ></MangaGrid>
+            <MangaGrid key={uuidv4()}></MangaGrid>
           ) : (
             <MangaGridSelected
-              onMangaDisplayed={setSelectedGrenre}
               genreSelectedGrid={selectedgrenre}
               key={uuidv4()}
             ></MangaGridSelected>

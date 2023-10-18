@@ -6,40 +6,29 @@ interface Props {
   selectedManga: Manga;
 }
 
-const useMangas = (titleOfManga: string) => {
+const useMangas = (id: number) => {
   interface FetchMangaResponse {
     count: number;
     data: Manga[];
   }
-  const [mangas, setMangas] = useState<Manga[]>([]);
+
+  let [mangas, setMangas] = useState<Manga[]>([]);
   const [error, setError] = useState("");
 
-  var genres2 = new Array<string>();
   var genres = new Array<string>();
-  console.log(titleOfManga);
-
-  // await axios
-  //   .get(`https://api.jikan.moe/v4/manga/11`)
-  //   .then((res) => setMangas(res.data.data))
-  //   .catch((err) => setError(err.message));
-
   useEffect(() => {
     axios
-      .get<FetchMangaResponse>(`https://api.jikan.moe/v4/manga/11`)
+      .get(`https://api.jikan.moe/v4/manga/${id}`)
       .then((res) => setMangas(res.data.data))
       .catch((err) => setError(err.message));
   }, []);
 
-  console.log("manga is " + mangas);
+  //console.log(mangas);
 
-  for (let i = 0; i < mangas.length; i++) {
-    var mangaT = new Object();
-    mangaT = mangas[i];
-    genres2.push(mangaT[0].genres[0].name);
-  }
-  genres = [...new Set(genres2)];
+  //genres = mangas[0].genres[0].name;
+  genres = [];
 
-  return { mangas, genres };
+  return { mangas, genres, error };
 };
 
 export default useMangas;

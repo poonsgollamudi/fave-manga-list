@@ -1,10 +1,28 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
+import Manga from "../hooks/mangaInf";
 
-const mangaURL = "https://api.jikan.moe/v4/manga";
+interface Props {
+  selectedManga: Manga;
+}
 
-export default axios.create({
-  method: "GET",
-  //url: `${mangaURL}`,
-});
+async function getDataFunc(id: number) {
+  interface FetchMangaResponse {
+    count: number;
+    data: Manga[];
+  }
 
-//console.log(resp.data.data.map((manga: any) => manga.title));
+  //let mangas: any[] = [{}];
+  let error: string = "";
+  var genresName = new Array<string>();
+  let genres = [];
+
+  const response = await fetch(`https://api.jikan.moe/v4/manga/${id}`);
+  const mangas = await response.json();
+
+  console.log(mangas);
+
+  return { mangas, error };
+}
+
+export default getDataFunc;
