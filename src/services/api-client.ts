@@ -19,6 +19,9 @@ async function getDataFunc(id: number) {
 
   const response = await fetch(`https://api.jikan.moe/v4/manga/${id}`);
   const mangas = await response.json();
+  setTimeout(function () {
+    //do what you need here
+  }, 2000);
 
   console.log(mangas);
 

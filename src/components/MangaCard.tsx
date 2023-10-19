@@ -7,13 +7,18 @@ interface Props {
 }
 
 const MangaCard = ({ manga }: Props) => {
+  const { url, title, images } = manga;
+  const {
+    webp: { image_url },
+  }: any = images;
+
   return (
     <>
       <Card borderRadius={10} key={uuidv4()}>
-        <Image src={manga?.images.webp.image_url} />
+        <Image src={image_url} />
         <CardBody>
-          <Link href={manga?.url} fontSize="2xl" isExternal>
-            {manga?.title}
+          <Link href={url} fontSize="2xl" isExternal>
+            {title}
           </Link>
         </CardBody>
       </Card>

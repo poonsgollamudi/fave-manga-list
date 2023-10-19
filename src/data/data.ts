@@ -1,4 +1,4 @@
-const mangaTitles = [
+const data: any = [
   { manga: "Kaguya-hime", id: 2156 },
   { manga: "Naruto", id: 11 },
   { manga: "Bleach", id: 12 },
@@ -21,4 +21,4 @@ const mangaTitles = [
   { manga: "Lovely★Complex", id: 31 },
 ];
 
-export default mangaTitles;
+export default data;
