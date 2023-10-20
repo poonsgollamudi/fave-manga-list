@@ -12,6 +12,8 @@ const MangaCard = ({ manga }: Props) => {
     webp: { image_url },
   }: any = images;
 
+  //console.log(title);
+
   return (
     <>
       <Card borderRadius={10} key={uuidv4()}>

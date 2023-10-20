@@ -16,4 +16,4 @@ genres = [...new Set(genres2)];
 console.log(mangaL);
 console.log(genres);
 
-export default { mangaL, genres };
+//export default { mangaL, genres };
